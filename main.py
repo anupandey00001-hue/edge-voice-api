@@ -21,7 +21,8 @@ class AudioRequest(BaseModel):
 
 @app.post("/api/edge")
 async def generate_edge_audio(req: AudioRequest):
-    temp_file = "temp_audio.mp3"
+    temp_file = "/tmp/temp_audio.mp3" 
+    
     communicate = edge_tts.Communicate(req.text, req.voice)
     await communicate.save(temp_file)
     
